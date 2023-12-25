@@ -1,0 +1,122 @@
+<title>Number Formatter</title>
+
+<h1> Number Formatter </h1>
+
+<p> The following scripts convert numbers to strings representing the numbers in various different formats. </p>
+
+<h2> Long / Short scale conversion </h2>
+
+<p> The below scripts convert large numbers to abbreviations. It can use long score or short scale. </p>
+
+<p> Set the endings list to the desired scale. This is an example: </p>
+
+<pre>
+thousand
+million
+billion
+trillion
+quadrillion
+quintillion
+sextillion
+septillion
+octillion
+nonillion
+decillion
+</pre>
+
+<p> To use <code>K M B T Qa Qu ...</code>, the intermediate <code class="b">(join ( ) (... :: grey))</code> reporter can be removed and the reporter in the second parameter can take its place. </p>
+
+<h3> 2 lines </h3>
+
+<pre class="blocks">
+define format (num) float (float)
+set [power of 1000 v] to (([floor v] of (([log v] of (num)) / (3))) + <((num) / ([10 ^ v] of (([floor v] of (([log v] of (num)) / (3))) * (3)))) = (1000)>)
+set [output v] to (join (([floor v] of (((num) / ([10 ^ v] of ((power of 1000) * (3)))) * ([10 ^ v] of (float)))) / ([10 ^ v] of (float))) (join ( ) (item (power of 1000) of [endings v])))
+</pre>
+
+<p> The <code class="b">([floor v] of (([log v] of (num :: custom)) / (3)))</code> block is the main calculation for which power of 1000 the number is, however, when numbers such as "1000" or "1000000" are inputted, there will be a small error value which will cause the value to be a tiny fraction smaller than its actual value. This causes a large problem when using it in conjunction with the <code class="b">([floor v] of ())</code> operator, so another expression is added to mitigate the issue. It checks if <code class="b">(num :: custom)</code> divided by the calculated power of 1000 is equal to 1000, and if it is, then add 1 to the value. </p>
+
+<h3> 1 line </h3>
+
+<pre class="blocks">
+define format (num) float (float)
+set [output v] to (join (([floor v] of (((num) / ([10 ^ v] of ((([floor v] of (([log v] of (num)) / (3))) + <((num) / ([10 ^ v] of (([floor v] of (([log v] of (num)) / (3))) * (3)))) = (1000)>) * (3)))) * ([10 ^ v] of (float)))) / ([10 ^ v] of (float))) (join ( ) (item (([floor v] of (([log v] of (num)) / (3))) + <((num) / ([10 ^ v] of (([floor v] of (([log v] of (num)) / (3))) * (3)))) = (1000)>) of [endings v])))
+</pre>
+
+<p> This script is identical to the previous but in one line. </p>
+
+<h2> Thousands Separator </h2>
+
+<p> These scripts create commas to separate thousands. </p>
+
+<pre>
+123456789 -> 123,456,789
+1535.2511 -> 1,535.2511
+</pre>
+
+<h3> Integers </h3>
+
+<pre class="blocks">
+define format number integer: (num)
+set [index v] to (0)
+set [output v] to ()
+repeat ((length of (num)) - (1))
+change [index v] by (1)
+set [output v] to (join (output) (join (letter (index) of (num)) (letter <(((length of (num)) - (index)) mod (3)) = (0)> of [,])))
+end
+set [output v] to (join (output) (letter ((index) + (1)) of (num)))
+</pre>
+
+<p> This script only works for integers. </p>
+
+<h3> Floating Point Numbers </h3>
+
+<h4> Script 1 </h4>
+
+<pre class="blocks">
+define format number: (num)
+delete all of [list v]
+set [index v] to (0)
+repeat (length of (num))
+change [index v] by (1)
+add (letter (index) of (num)) to [list v]
+if <[list v] contains [.]?> then
+set [i v] to ((item # of [.] in [list v]) - (1))
+else
+set [i v] to (length of [list v])
+end
+set [index v] to (0)
+set [output v] to ()
+repeat ((i) - (1))
+change [index v] by (1)
+set [output v] to (join (output) (join (letter (index) of (num)) (letter <(((i) - (index)) mod (3)) = (0)> of [,])))
+end
+repeat ((length of (num)) - ((i) - (1)))
+change [index v] by (1)
+set [output v] to (join (output) (letter (index) of (num)))
+</pre>
+
+<h4> Script 2 </h4>
+
+<pre class="blocks">
+define format number: (num)
+delete all of [list v]
+set [index v] to (0)
+repeat (length of (num))
+change [index v] by (1)
+add (letter (index) of (num)) to [list v]
+end
+if <[list v] contains [.]?> then
+set [index v] to ((item # of [.] in [list v]) - (1))
+set [i v] to (((length of [list v]) - (item # of [.] in [list v])) - (1))
+else
+set [index v] to (length of [list v])
+set [i v] to (1)
+end
+set [output v] to ()
+repeat ((index) - (1))
+set [output v] to (join (output) (join (item (1) of [list v]) (letter <(((i) - (length of [list v])) mod (3)) = (0)> of [,])))
+delete (1) of [list v]
+end
+set [output v] to (join (output) (list :: list))
+</pre>

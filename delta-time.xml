@@ -1,0 +1,53 @@
+<title> Delta Time </title>
+
+<h1> Delta Time </h1>
+
+<p> Delta time can be used for various purposes and is an essential tool when creating games. It may be useful to maintain equivalent speed at different frame rates along with allowing speed changes. Many scripts become more complicated with the introduction of delta time and new mathematical concepts may be used as a result. The following scripts showcase how to set up and use deltatime. </p>
+
+<h2> Delta Time Calculator </h2>
+
+<p> Before delta time can be used, it must be calculated. Below are scripts to calculate delta time. </p>
+
+<h3> No Timer </h3>
+
+<pre class="blocks">
+
+when gf clicked
+reset timer
+forever
+set [deltaTime v] to (timer)
+reset timer
+end
+
+</pre>
+
+<p> This script works by resetting the timer. There is a 1 frame delay when the script is looped, allowing for it to measure the amount of time from one frame to another. </p>
+
+<h3> Timer Recreation </h3>
+
+<pre class="blocks">
+
+when gf clicked
+reset timer
+set [elapsedTime v] to (0)
+forever
+set [deltaTime v] to (timer)
+change [elapsedTime v] by (timer)
+reset timer
+end
+
+</pre>
+
+<p> This script is similar to the previous script except that it keeps track of how much time elapsed. </p>
+
+<h2> Formula Recreations </h2>
+
+<p> When using delta time, it may be difficult to recreate formulas that extend the behavior of scripts. Here are a few scripts along with their explanation. The key idea of these scripts are that scripts running at 2x FPS should behave identically to x FPS scripts if run twice.</p>
+
+<h3> Addition and Subtraction </h3>
+
+<pre class="blocks">
+change [variable v] by ((deltaTime) * (x :: grey))
+</pre>
+
+</pre>

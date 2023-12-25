@@ -1,0 +1,38 @@
+<title>Hash</title>
+
+<! ------------------------------------------------ >
+
+<h1> Hash </h1>
+
+<p> A hashing script takes data (a string in this case) and generates a random number based off of it. If different data is inputted into the function, the returning value should be completely different regardless of how little the change may be. If the same data is inputted into the function, it should generate the same random number. </p>
+
+<h2> Script </h2>
+
+<pre class="blocks">
+define hash (str)
+set [output v] to (1)
+repeat (length of (str))
+set [output v] to ((1) + (([floor v] of (output)) + (((output) * ([e ^ v] of ((item # of (letter ([floor v] of (output)) of (str)) in [chars v]) * (low fraction :: grey)))) mod (1))))
+</pre>
+
+<p> Set <code class="b">(low fraction)</code> to a low fraction, like <code>0.23617120275921738</code>. This is because for large values of <code class="b">(item # of (letter ([floor v] of (output)) of (str::custom)) in [chars v])</code>, the <code>exp()</code> of that number is so large, the fractional component gets lost due to the limited precision. The more characters added, the smaller the fraction should be. </p>
+
+<p> Because of the absurd amount of time it takes Scratch to modify a variable, I have opted to store both the index and the random number in one variable. </p>
+
+<p> The integer component stores the string index; the current character in the string. The fractional component stores the randomness.</p>
+
+<h2> Extra Scripts </h2>
+
+Script to add characters to a list:
+
+<pre class="blocks">
+delete all of [chars v]
+set [i v] to (0)
+set [chars v] to (characters you want in the list :: grey)
+repeat (length of (chars))
+change [i v] by (1)
+add (letter (i) of (chars)) to [chars v]
+end
+</pre>
+
+For usernames, <code class="b">(chars)</code> can be set to <code>abcdefghijklmnopqrstuvwxyz1234567890-_</code>

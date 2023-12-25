@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap');
+
+body {
+  background-color: #1a1e21;
+  color: #fff;
+  font-family: Rubik;
+  padding-top: 50px;
+  padding-right: calc(20px + 5vw);
+  padding-left: calc(20px + 5vw);
+  padding-bottom: 200px;
+}
+
+p, h1, h2, h3, button, input {
+  color: inherit;
+  font-family: inherit;
+}
+
+p {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+button, input {
+  background-color: #202330;
+  size: 200%;
+  font-size: 24px;
+  border-radius: 4px;
+}
+
+input {
+  background-color: #304050;
+  width: 50%;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+pre, code, textarea {
+  color: inherit;
+  font-family: "Fira Code";
+  font-size: 18px;
+}
+
+textarea {
+  background-color: #304050;
+}
