@@ -1,0 +1,45 @@
+<title>Smooth Rotation</title>
+
+<h1> Smooth Rotation </h1>
+
+<p> The following scripts provide smooth rotation scripts. </p>
+
+<h2> Ease Towards Target </h2>
+
+<h3> Script 1 </h3>
+
+<pre class="blocks">
+
+define turn closer to (target direction) (smoothness)
+turn cw ((((((target direction) - (direction)) + (180)) mod (360)) - (180)) / (smoothness)) degrees
+
+</pre>
+
+<p> Set the <code class="b">(smoothness :: custom)</code> variable to the amount of smoothness. </p>
+
+<h3> Script 2 </h3>
+
+<pre class="blocks">
+
+define turn closer to (target direction) (smoothness)
+turn ccw (target direction) degrees
+turn cw ((target direction) - ((direction) / (smoothness))) degrees
+
+</pre>
+
+<p> This script behaves identically to the previous script. </p>
+
+<h2> Linearly Ease Towards Target </h2>
+
+<pre class="blocks">
+
+define turn closer to (target direction) (deg)
+set [angle change v] to (((((target direction) - (direction)) + (180)) mod (360)) - (180))
+if <([abs v] of (angle change)) < (deg)> then
+point in direction (target direction)
+else
+turn cw ((deg) * ((angle change) / ([abs v] of (angle change)))) degrees
+
+</pre>
+
+<p> Set the <code class="b">(deg :: custom)</code> variable to the maximum amount of degrees the sprite can turn after the script is run. </p>

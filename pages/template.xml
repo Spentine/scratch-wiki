@@ -1,0 +1,21 @@
+<title>Title Here</title>
+
+
+
+<h1> Template </h1>
+
+<p> This is a description. </p>
+
+<h2> Script </h2>
+
+<pre class="blocks">
+define exampleCode (x)
+set [i v] to (0)
+repeat (x)
+wait (0) secs
+change [i v] by (1)
+say (i)
+end
+</pre>
+
+<p> This explains the script. </p>
