@@ -1,0 +1,17 @@
+<title>Point Rotation</title>
+
+
+
+<h1> Point Rotation </h1>
+
+<p> Rotates a sprite clockwise around a given point. </p>
+
+<h2> Script </h2>
+
+<pre class="blocks">
+define rotate (deg) degrees around (x) (y)
+go to x: (((((x position) - (x)) * ([cos v] of (deg))) + (((y position) - (y)) * ([sin v] of (deg)))) + (x)) y: (((((y position) - (y)) * ([cos v] of (deg))) - (((x position) - (x)) * ([sin v] of (deg)))) + (y))
+turn cw (deg) degrees
+</pre>
+
+<p> The script applies the rotation matrix to the sprite's position, offset so that the center of rotation is at the origin. The resulting position is then added with the center of rotation to effectively rotate around the point. The second block visually rotates the sprite. </p>
