@@ -1,0 +1,41 @@
+<title>String Reversal</title>
+
+
+
+<h1> String Reversal </h1>
+
+<p> String reversal is the process by which a string's characters are arranged backwards, in reverse order. </p>
+
+<h2> Script 1 </h2>
+
+<pre class="blocks">
+define reverse text (str)
+set [output v] to []
+repeat (length of (str))
+set [output v] to (join (letter ((length of (output)) + (1)) of (str)) (output))
+end
+</pre>
+
+<h2> Script 2 </h2>
+
+<pre class="blocks">
+define reverse text (str)
+set [index v] to (0)
+set [output v] to []
+repeat (length of (str))
+change [index v] by (1)
+set [output v] to (join (letter (index) of (str)) (output))
+end
+</pre>
+
+<h2> Script 3 </h2>
+
+<p> This script uses blocks from the hidden palette. A modification to the project.json of a project or a modified version of Scratch is required to recreate the script. </p>
+
+<pre class="blocks">
+define reverse text (str)
+set [output v] to []
+for [index v] in (length of (str)) {
+set [output v] to (join (letter (index) of (str)) (output))
+} :: control
+</pre>
