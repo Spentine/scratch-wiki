@@ -1,0 +1,58 @@
+<title>Binary</title>
+
+
+
+<h1> Binary </h1>
+
+<p> Binary is a base-2 numerical system that uses 2 digits; <code>0</code> and <code>1</code>. </p>
+
+<p> Using binary in Scratch projects allows for very simple encoding and decoding of values. Because cloud variables hold a limited amount of digits, converting a list of true / false values from binary to decimal will make use of the limited storage more efficiently. </p>
+
+<h2> Converting a Number to Binary </h2>
+
+<p> Note that the numbers must be a non-negative integer. </p>
+
+<pre class="blocks">
+define number to binary (num)
+set [i v] to (num)
+set [binary v] to ()
+repeat until &lt;(i) = (0)&gt;
+set [binary v] to (join ((i) mod (2))(binary))
+set [i v] to ([floor v] of ((i) / (2)))
+end
+</pre>
+
+<h2> Converting Binary to a Number </h2>
+
+<p> The script only converts non-negative integers in binary format. </p>
+
+<pre class="blocks"> 
+((0) + (join [0b] (binary)))
+</pre>
+
+<p> This script works because JavaScript (what Scratch is built on) interprets strings with the prefix "0b" as a binary number. Adding 0 to the string will convert the string into a number. </p>
+
+<h2> Padding Binary Numbers </h2>
+
+<p> The script below will convert a binary number into a binary number of equal value, adding 0's at the beginning so that the number has a multiple of 8 digits. </p>
+
+<pre>
+Example:
+=================================
+101 -> 00000101
+11101 -> 00011101
+11101110 -> 11101110
+101101101 -> 0000000101101101
+1101101101110 -> 0001101101101110
+</pre>
+
+<br>
+
+<pre class="blocks">
+define pad binary number to have a multiple of 8 digits (bin)
+set [binary v] to (bin)
+repeat until &lt;((length of (binary)) mod (8)) = (0)&gt;
+set [binary v] to (join (0)(binary))
+</pre>
+
+<p> The script appends "0"s to the beginning of the string until the length of the string is a multiple of 8. </p>
