@@ -1,0 +1,18 @@
+<title> scratchblocks </title>
+
+
+
+<h1> scratchblocks </h1>
+
+<textarea rows=20 cols=50 id="sbInput" oninput="renderScratchBlocksInput();"></textarea>
+
+<br>
+
+<button onclick="renderScratchBlocks();"> render </button>
+
+<br>
+
+<p> Real-Time Rendering: <input type=checkbox id="realTime" checked="true"> </input> </p>
+
+<div id="block-render">
+</div>
