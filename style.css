@@ -8,10 +8,15 @@
   src: url("FiraCode-Medium.ttf")
 }
 
+@font-face {
+  font-family: "Work Sans";
+  src: url("WorkSans-Medium.ttf")
+}
+
 body {
   background-color: #1a1e21;
   color: #ffffff;
-  font-family: Rubik;
+  font-family: "Rubik";
   padding-top: 50px;
   padding-right: calc(20px + 5vw);
   padding-left: calc(20px + 5vw);
@@ -21,22 +26,28 @@ body {
 p, h1, h2, h3, button, input {
   color: inherit;
   font-family: inherit;
+  font-weight: normal;
 }
 
 p {
   font-size: 18px;
+  font-family: "Rubik";
+}
+
+h1, h2, h3 {
+  font-family: "Work Sans";
 }
 
 h3 {
-  font-size: 20px;
-}
-
-h2 {
   font-size: 24px;
 }
 
+h2 {
+  font-size: 32px;
+}
+
 h1 {
-  font-size: 28px;
+  font-size: 40px;
 }
 
 button, input {
