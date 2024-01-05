@@ -1,0 +1,44 @@
+<title>Homepage</title>
+
+
+
+<h1> Homepage </h1>
+
+<p> This is Spentine's Scratch Wiki. </p>
+
+<h2> Functionality Test </h2>
+
+<pre class="blocks">
+define exampleCode (x)
+set [i v] to (0)
+repeat (x)
+wait (0) secs
+change [i v] by (1)
+say (i)
+end
+</pre>
+
+<h2> scratchblocks Converter </h2>
+
+<p> Enter scratchblocks into the text input below to convert it to an XML-friendly format. </p>
+
+<textarea rows=10 cols=50 id="text"></textarea>
+
+<br>
+
+<button onclick="convertscratchblocks();"> convert </button>
+
+<h2> scratchblocks </h2>
+
+<textarea rows=10 cols=50 id="sbInput" oninput="renderScratchBlocksInput();"></textarea>
+
+<br>
+
+<button onclick="renderScratchBlocks();"> render </button>
+
+<br>
+
+<p> Real-Time Rendering: <input type=checkbox id="realTime" checked="true"> </input> </p>
+
+<div id="block-render">
+</div>
