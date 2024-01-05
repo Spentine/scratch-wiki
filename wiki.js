@@ -11,6 +11,8 @@ if (renderBlocks == null) {
 loadedPage = url.searchParams.get('page');
 if (loadedPage == null) {
   loadedPage = 'homepage.xml';
+} else if (!loadedPage.includes(".xml")) {
+  loadedPage = loadedPage + ".xml"
 }
 
 function convert() {
