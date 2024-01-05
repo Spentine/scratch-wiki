@@ -1,0 +1,74 @@
+<title>Probability Wheel</title>
+
+
+
+<h1> Probability Wheel </h1>
+
+<p> A <i>probability wheel</i> is a device or concept that randomly selects outcomes with different probabilities, allocating a higher chance to certain options and lower chances to others. </p>
+
+<h2> Non-normalized Probability </h2>
+
+<pre class="blocks">
+when gf clicked
+delete all of [probabilities v]
+add (1) to [probabilities v] // add probabilities
+add (2) to [probabilities v]
+add (3) to [probabilities v]
+delete all of [items v]
+add [Item 1] to [items v] // add corresponding items
+add [Item 2] to [items v]
+add [Item 3] to [items v]
+probability wheel
+
+define probability wheel
+set [i v] to (0)
+set [sum v] to (0)
+repeat (length of [probabilites v])
+    change [i v] by (1)
+    change [sum v] by (item (i) of [probabilities v])
+    replace item (i) of [probabilities v] with (sum)
+end
+set [random number v] to ((sum) * (pick random (0.0) to (1.0)))
+set [i v] to (0)
+repeat (length of [probabilites v])
+    change [i v] by (1)
+    if &lt;(item (i) of [probabilities v]) &gt; (random number)&gt; then
+        set [output v] to (item (i) of [items v])
+        stop [this script v]
+    end
+end
+</pre>
+
+<p> This script accepts any numerical value for the probability, as long as it does not add to 0 and all numbers are non-negative. </p>
+
+<p> It will normalize the values before choosing a random item. </p>
+
+<h2> Normalized Probabilities </h2>
+
+<pre class="blocks">
+when gf clicked
+delete all of [probabilities v]
+add (0.25) to [probabilities v] // add probabilities
+add (0.3) to [probabilities v]
+add (0.45) to [probabilities v] 
+delete all of [items v]
+add [Item 1] to [items v] // add corresponding items
+add [Item 2] to [items v]
+add [Item 3] to [items v]
+probability wheel
+
+define probability wheel
+set [random number v] to (pick random (0.0) to (1.0)
+set [i v] to (0)
+set [sum v] to (0)
+repeat (length of [probabilities v])
+    change [i v] by (1)
+    change [sum v] by (item (i) of [probabilities v])
+    if &lt;(sum) &gt; (random number)&gt; then
+        set [output v] to (item (i) of [items v])
+        stop [this script v]
+    end
+end
+</pre>
+
+<p> This script requires that the probabilities add up to 1. </p>
