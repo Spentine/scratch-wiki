@@ -1,9 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap');
+@font-face {
+  font-family: "Rubik";
+  src: url("Rubik-Light.ttf");
+}
+
+@font-face {
+  font-family: "Fira Code";
+  src: url("FiraCode-Medium.ttf")
+}
 
 body {
   background-color: #1a1e21;
-  color: #fff;
+  color: #ffffff;
   font-family: Rubik;
   padding-top: 50px;
   padding-right: calc(20px + 5vw);
@@ -59,6 +66,14 @@ pre, code, textarea {
   color: inherit;
   font-family: "Fira Code";
   font-size: 18px;
+}
+
+pre, code {
+  background-color: #101a20;
+}
+
+pre.blocks, pre.blocksInput {
+  background-color: inherit;
 }
 
 textarea {
