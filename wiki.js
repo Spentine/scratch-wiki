@@ -10,7 +10,7 @@ if (renderBlocks == null) {
 
 loadedPage = url.searchParams.get('page');
 if (loadedPage == null) {
-  loadedPage = 'test.xml';
+  loadedPage = 'homepage.xml';
 }
 
 function convert() {
@@ -44,20 +44,6 @@ function loadFile() {
       document.body.innerHTML = bodyContent;
       
       console.log(document.body.innerHTML);
-      /*
-      var preElements = document.querySelectorAll('pre.blocks');
-      
-      // Loop through each <pre> element and encode its content
-      preElements.forEach(function(preElement) {
-        var content = preElement.innerHTML;
-
-        // Encode the content
-        var encodedContent = content.replaceAll("<", '&lt;');
-
-        // Replace the content of the <pre> element with the encoded content
-        preElement.innerHTML = encodedContent;
-      });
-      */
       
       convert(); // Call your conversion function after loading content
       var inputElement = document.getElementById("switchPage");
@@ -80,9 +66,25 @@ function handleInputChange() {
 
 function convertscratchblocks() {
   try {
-  text = document.getElementById("text");
+  var text = document.getElementById("text");
   text.value = text.value
   .replaceAll("<", "&lt;")
   .replaceAll(">", "&gt;");
   } catch {}
+}
+
+function renderScratchBlocks() {
+  var inputDiv = document.getElementById("block-render");
+  inputDiv.innerHTML = "<pre class=\"blocksInput\" id=\"inputPre\"></pre>"
+  var inputPre = document.getElementById("inputPre");
+  var text = document.getElementById("sbInput");
+  inputPre.innerHTML = text.value;
+  scratchblocks.renderMatching('pre.blocksInput', {
+    style: 'scratch3',   // Optional, defaults to 'scratch2'.
+    scale: 1,                // Optional, defaults to 1
+  });
+}
+
+function renderScratchBlocksInput() {
+  if (document.getElementById("realTime").checked) {renderScratchBlocks()}
 }
