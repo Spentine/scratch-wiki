@@ -1,0 +1,90 @@
+<title> Hidden Palette </title>
+
+
+
+<h1> Hidden Palette </h1>
+
+<p> Scratch's hidden palette consists of valid blocks that are hidden from the palette. Most blocks in the hidden palette don't function but the others that are functional may prove to be useful. </p>
+
+<h2> for each [var] in (int) </h2>
+
+<p> This block is very useful because it can be used in a wide variety of situations. Its full recursive functionality can't be easily recreated with the other blocks. </p>
+
+<pre class="blocks">
+for each [variable v] in (10) {
+...
+} :: control
+</pre>
+
+<p> The block functions like a repeat block, but on the start of every loop, it sets a variable to the current loop number. </p>
+
+<h3> Workaround </h3>
+
+<pre class="blocks">
+set [a0 v] to (0)
+repeat [integer]
+change [a0 v] by (1)
+set [variable v] to (a0)
+...
+end
+</pre>
+
+<p> The script above is the most accurate when it comes to a workaround, but there are caveats. If the script is used in a recursive situation, the original block will have separate loop counters for each recursion while the recreation can only have one loop counter. It is also unwieldy due to the need to keep a track of the looping variables used in other scripts. If the loop counter won't be modified in the loop, an alternate workaround could be used: </p>
+
+<pre class="blocks">
+set [variable v] to (0)
+repeat [integer]
+change [variable v] by (1)
+...
+end
+</pre>
+
+<p> This code is very common in Scratch projects. The variable can't be modified while in the loop, but it's still useful nonetheless. </p>
+
+<h2> while &lt;&gt; </h2>
+
+<p> This block can be used to replace two other blocks and its workaround consists of 2 blocks, so it's not a necessity. </p>
+
+<pre class="blocks">
+while &lt;bool :: grey&gt; {
+...
+} :: control
+</pre>
+
+<p> The block will loop if the condition is true at the end of the loop or when the block is run. </p>
+
+<h3> Workaround </h3>
+
+<pre class="blocks">
+repeat until &lt;not &lt;bool :: grey&gt;&gt;
+...
+end
+</pre>
+
+<p> The workaround is very simple so the block doesn't bring anything new. </p>
+
+<h2> Counter Blocks </h2>
+
+<p> These blocks can easily be recreated with variables, but its main strength is its speed. The <code class=b>clear counter :: control</code> (clear counter) and <code class=b>increment counter :: control</code> (increment counter) blocks run twice as fast as its variable counterparts. It is also more restrictive due to the limited operations that can be done with the counter blocks. </p>
+
+<pre class="blocks">
+clear counter :: control
+
+increment counter :: control
+
+(counter :: control)
+</pre>
+
+<p> The <code class=b>clear counter :: control</code> (clear counter) block sets the <code class=b>(counter :: control)</code> (counter) to 0. The <code class=b>increment counter :: control</code> (increment counter) block increases the <code class=b>(counter :: control)</code> (counter) by 1. </p>
+
+<h3> Workaround </h3>
+
+<pre class="blocks">
+set [counter v] to (0)
+
+change [counter v] by (1)
+
+(counter)
+</pre>
+
+<p> The workaround is very simple as it only consists of one block. It doesn't render the original counter blocks useless due to the speed difference. </p>
