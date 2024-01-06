@@ -4,7 +4,7 @@
 
 <h1> Hidden Palette </h1>
 
-<p> Scratch's hidden palette consists of valid blocks that are hidden from the palette. Most blocks in the hidden palette don't function but the others that are functional may prove to be useful. </p>
+<p> Scratch's hidden palette consists of valid blocks that are hidden from the palette. Most blocks in the hidden palette don't function but the others that are functional may prove to be useful. A modification to the project.json of a project or a modified version of Scratch is required to create these blocks. </p>
 
 <h2> for each [var] in (int) </h2>
 
@@ -13,7 +13,7 @@
 <pre class="blocks">
 for each [variable v] in (10) {
 ...
-} :: control
+} :: control loop
 </pre>
 
 <p> The block functions like a repeat block, but on the start of every loop, it sets a variable to the current loop number. </p>
@@ -48,7 +48,7 @@ end
 <pre class="blocks">
 while &lt;bool :: grey&gt; {
 ...
-} :: control
+} :: control loop
 </pre>
 
 <p> The block will loop if the condition is true at the end of the loop or when the block is run. </p>

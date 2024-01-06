@@ -42,7 +42,7 @@ function loadFile() {
   fetch('pages/' + loadedPage)
     .then(response => response.text())
     .then(content => {
-      bodyContent = '<button onclick="renderToggle();"> render toggle </button><p>current page: ' + url.searchParams.get('page') + '<br>switch to page: </p><input type="text" id="switchPage">' + content;
+      bodyContent = '<button onclick="renderToggle();"> render toggle </button><p>current page: ' + url.searchParams.get('page') + '<br>switch to page: </p><input type="text" id="switchPage" class="switchPage">' + content;
       document.body.innerHTML = bodyContent;
       
       console.log(document.body.innerHTML);

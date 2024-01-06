@@ -30,12 +30,12 @@ end
 
 <h2> Script 3 </h2>
 
-<p> This script uses blocks from the hidden palette. A modification to the project.json of a project or a modified version of Scratch is required to recreate the script. </p>
+<p> This script uses blocks from the hidden palette. </p>
 
 <pre class="blocks">
 define reverse text (str)
 set [output v] to []
 for [index v] in (length of (str)) {
 set [output v] to (join (letter (index) of (str)) (output))
-} :: control
+} :: control loop
 </pre>

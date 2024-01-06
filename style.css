@@ -57,7 +57,7 @@ button, input {
   border-radius: 4px;
 }
 
-input {
+input.switchPage {
   background-color: #304050;
   width: 50%;
 }
