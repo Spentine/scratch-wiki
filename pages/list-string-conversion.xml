@@ -1,6 +1,6 @@
 <title>List and String Conversion</title>
 
-<! ------------------------------------------------ >
+
 
 <h1> List to String </h1>
 
@@ -21,7 +21,7 @@ change [a v] by (1)
 set [b v] to (0)
 repeat (length of (item (a) of [list v]))
 change [b v] by (1)
-if <[/"] contains (letter (b) of (item (a) of [list v]))?> then
+if &lt;[/"] contains (letter (b) of (item (a) of [list v]))?&gt; then
 set [output v] to (join (output) [/])
 end
 set [output v] to (join (output) (letter (b) of (item (a) of [list v])))
@@ -40,14 +40,14 @@ change [a v] by (1)
 set [b v] to (0)
 repeat (length of (item (a) of [list v]))
 change [b v] by (1)
-set [output v] to (join (output) (join (letter <[/"] contains (letter (b) of (item (a) of [list v]))?> of [/]) (letter (b) of (item (a) of [list v]))))
+set [output v] to (join (output) (join (letter &lt;[/"] contains (letter (b) of (item (a) of [list v]))?&gt; of [/]) (letter (b) of (item (a) of [list v]))))
 end
 set [output v] to (join (output) [,])
 </pre>
 
 <h3> Script 3 (fastest) </h3>
 <h4> Important Note </h4>
-<p> This code runs nearly 30% faster than the previous script, however, the size of the size of the strings produced are nearly twice as long. It is good for performance but terrible for memory.  </p>
+<p> This code runs nearly 30% faster than the previous script, however, the size of the size of the strings produced are nearly twice as long. It's good for performance but terrible for memory.  </p>
 
 <p> Rather than only escaping each "/" and "," character, it escapes every character, removing the need to check whether the character is either "/" or ",". </p>
 
@@ -266,5 +266,124 @@ delete all of [baz v]
 repeat (length of [list v])
 change [i v] by (1)
 add (item (i) of [list v]) to [baz v]
+end
+</pre>
+
+<h1> Hidden Palette Scripts </h1>
+
+<p> The scripts below use blocks in the <i>hidden palette</i>. </p>
+
+<h2> List to String </h2>
+
+<h3> Script 1 (3rd fastest) </h3>
+
+<pre class="blocks">
+define list to string
+set [output v] to ()
+for each [a v] in (length of [list v]) {
+for each [b v] in (length of (item (a) of [list v])) {
+if &lt;[/"] contains (letter (b) of (item (a) of [list v]))?&gt; then
+set [output v] to (join (output) [/])
+end
+set [output v] to (join (output) (letter (b) of (item (a) of [list v])))
+} :: control loop
+set [output v] to (join (output) [,])
+} :: control loop
+</pre>
+
+<h3> Script 2 (2nd fastest) </h3>
+
+<pre class="blocks">
+define list to string
+set [output v] to ()
+for each [a v] in (length of [list v]) {
+for each [b v] in (length of (item (a) of [list v])) {
+set [output v] to (join (output) (join (letter &lt;[/"] contains (letter (b) of (item (a) of [list v]))?&gt; of [/]) (letter (b) of (item (a) of [list v]))))
+} :: control loop
+set [output v] to (join (output) [,])
+} :: control loop
+</pre>
+
+<h3> Script 3 (fastest) </h3>
+
+<h4> Important Note </h4>
+
+<p> This script is based off of the regular Script 3, so it also has the same behavior. </p>
+
+<pre class="blocks">
+define list to string
+set [output v] to ()
+for each [a v] in (length of [list v]) {
+set [b v] to ()
+repeat (length of (item (a) of [list v]))
+set [b v] to (join (b) (join [/] (letter (((length of (b)) / (2)) + (1)) of (item (a) of [list v]))))
+end
+set [output v] to (join (output) (join (b) [,]))
+} :: control loop
+</pre>
+
+<h2> String to List </h2>
+
+<h3> Script 1 (3rd fastest) </h3>
+
+<pre class="blocks">
+define string to list (str)
+delete all of [list v]
+clear counter :: control
+increment counter :: control
+set [a v] to ()
+repeat until <(counter :: control) > (length of (str))
+if <(letter (counter :: control) of (str)) = [,]> then
+add (a) to [list v]
+set [a v] to ()
+else
+if <(letter (counter :: control) of (str)) = [/]> then
+increment counter :: control
+end
+set [a v] to (join (a) (letter (counter :: control) of (str)))
+end
+increment counter :: control
+end
+</pre>
+
+<h4> Important Note </h4>
+
+<p> This is the fastest decoding for modified CSV. The other (faster) decoding methods only work when using List to String Script 3.
+
+<h3> Script 2 (2nd fastest) </h3>
+
+<pre class="blocks">
+define string to list (str)
+delete all of [list v]
+clear counter :: control
+increment counter :: control
+repeat until &lt;(counter :: control) &gt; (length of (str))&gt;
+set [a v] to ()
+repeat until &lt;(letter (counter :: control) of (str)) = [,]&gt;
+set [a v] to (join (a) (letter ((counter :: control) + (1)) of (str)))
+increment counter :: control
+increment counter :: control
+end
+add (a) to [list v]
+increment counter :: control
+end
+</pre>
+
+<h3> Script 3 (fastest) </h3>
+
+<pre class="blocks">
+define string to list (str)
+delete all of [list v]
+set [a v] to (1)
+clear counter :: control
+repeat until &lt;((a) + ((2) * (counter :: control))) &gt; (length of (str))&gt;
+set [b v] to ()
+repeat until &lt;(letter ((a) + ((2) * (counter :: control))) of (str)) = [,]&gt;
+set [b v] to (join (b) (letter (((a) + ((2) * (counter :: control))) + (1)) of (str)))
+increment counter :: control
+end
+add (b) to [list v]
+change [a v] by ((1) + ((2) * (counter :: control)))
+clear counter :: control
 end
 </pre>
