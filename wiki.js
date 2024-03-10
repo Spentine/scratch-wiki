@@ -29,6 +29,7 @@ function convert() {
     style: 'scratch3',   // Optional, defaults to 'scratch2'.
     scale: 0.6,                // Optional, defaults to 1
   });
+  renderKatex();
 }
 
 function renderToggle() {
@@ -89,4 +90,14 @@ function renderScratchBlocks() {
 
 function renderScratchBlocksInput() {
   if (document.getElementById("realTime").checked) {renderScratchBlocks()}
+}
+
+function renderKatex() {
+  mathElements = Array.from(document.getElementsByClassName("math"));
+  
+  mathElements.forEach(mathElement => {
+    katex.render(mathElement.innerHTML, mathElement, {
+      throwOnError: false
+    });
+  });
 }

@@ -98,3 +98,7 @@ pre.blocks, pre.blocksInput {
 textarea {
   background-color: #304050;
 }
+
+.math {
+  background-color: inherit;
+}
