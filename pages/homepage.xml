@@ -22,7 +22,7 @@ end
 x^2 + 4x + 3 = 0
 </pre>
 
-<p> This is some math: <span class="math">\int_0^1 x^2 dx</span>
+<p> This is some math: <span class="mathInline">\int_0^1 x^2 dx</span> </p>
 
 <h2> scratchblocks Converter </h2>
 

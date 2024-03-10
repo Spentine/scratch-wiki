@@ -92,12 +92,26 @@ function renderScratchBlocksInput() {
   if (document.getElementById("realTime").checked) {renderScratchBlocks()}
 }
 
+function removeGarbageHtmlKatex(tex) {
+  return tex.replaceAll("&amp;", "&").replaceAll("&lt;", "<").replaceAll("&gt;", ">");
+}
+
 function renderKatex() {
   mathElements = Array.from(document.getElementsByClassName("math"));
   
   mathElements.forEach(mathElement => {
-    katex.render(mathElement.innerHTML, mathElement, {
-      throwOnError: false
+    katex.render(removeGarbageHtmlKatex(mathElement.innerHTML), mathElement, {
+      throwOnError: false,
     });
+     mathElement.style.fontSize = "2em";
+  });
+  
+  mathElements = Array.from(document.getElementsByClassName("mathInline"));
+  
+  mathElements.forEach(mathElement => {
+    katex.render(removeGarbageHtmlKatex(mathElement.innerHTML), mathElement, {
+      throwOnError: false,
+    });
+     mathElement.style.fontSize = "1.21em";
   });
 }

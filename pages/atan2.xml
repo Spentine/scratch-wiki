@@ -31,3 +31,47 @@ point in direction (([atan v] of (((target x) - (x position)) / ((target y) - (y
 
 <p> This script has a similar explanation to the previous script, except that the positions are offset the block can be used from any position. </p>
 
+<h2> Explanation </h2>
+
+<p> Given a point <span class=mathInline> (x, y) </span>, find the angle between a ray extending up from the origin and the point as illustrated in the diagram below. </p>
+
+<svg version="1.1" viewBox="0.0 0.0 480.0 300.0" width="480px" height="360px" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><clipPath id="p.0"><path d="m0 0l480.0 0l0 360.0l-480.0 0l0 -360.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill="#000000" fill-opacity="0.0" d="m0 0l480.0 0l0 360.0l-480.0 0z" fill-rule="evenodd"/><path fill="#000000" fill-opacity="0.0" d="m48.02887 250.84514l0 0c16.957268 0 32.829697 8.340622 42.448563 22.305801l-42.448563 29.237518z" fill-rule="evenodd"/><path fill="#000000" fill-opacity="0.0" d="m48.02887 250.84514l0 0c16.957268 0 32.829697 8.340622 42.448563 22.305801" fill-rule="evenodd"/><path stroke="#ea9999" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="butt" d="m48.02887 250.84514l0 0c16.957268 0 32.829697 8.340622 42.448563 22.305801" fill-rule="evenodd"/><path fill="#000000" fill-opacity="0.0" d="m59.595802 196.71916l41.95275 0l0 58.173233l-41.95275 0z" fill-rule="evenodd"/><path fill="#f3f3f3" d="m80.36906 236.68916q-3.4375 0 -5.03125 -2.671875q-1.59375 -2.6875 -1.59375 -8.1875q0 -5.515625 1.75 -8.40625q1.75 -2.890625 5.125 -2.890625q3.421875 0 5.078125 2.640625q1.65625 2.640625 1.65625 8.15625q0 5.6875 -1.75 8.53125q-1.75 2.828125 -5.234375 2.828125zm-3.75 -11.953125l7.84375 0q-0.21875 -8.96875 -3.90625 -8.96875q-3.8125 0 -3.9375 8.96875zm7.859375 1.59375l-7.859375 0q0.171875 9.109375 3.984375 9.109375q3.8125 0 3.875 -9.109375zm4.84375 -12.09375l0 0z" fill-rule="nonzero"/><path fill="#000000" fill-opacity="0.0" d="m10.530184 138.54593l41.95276 0l0 58.173233l-41.95276 0z" fill-rule="evenodd"/><path fill="#f3f3f3" d="m31.569061 179.54718q-0.859375 1.9375 -1.671875 3.140625q-0.8125 1.203125 -1.796875 1.8125q-0.96875 0.609375 -2.3125 0.609375q-0.859375 0 -1.9375 -0.203125l0 -3.09375l1.390625 0q0.1875 0.640625 0.46875 0.890625q0.28125 0.25 0.8125 0.25q0.46875 0 0.828125 -0.1875q0.375 -0.171875 0.765625 -0.609375q0.40625 -0.4375 0.9375 -1.34375q0.546875 -0.90625 1.21875 -2.296875l-4.375 -11.765625q-0.421875 -1.140625 -0.6875 -1.59375q-0.25 -0.453125 -0.546875 -0.6875q-0.296875 -0.234375 -0.90625 -0.375l0 -0.765625l6.359375 0l0 0.765625q-0.734375 0.171875 -1.03125 0.34375q-0.296875 0.15625 -0.4375 0.421875q-0.140625 0.25 -0.140625 0.65625q0 0.421875 0.09375 0.875q0.109375 0.453125 0.328125 1.0625l2.78125 7.828125l3.125 -7.5q0.265625 -0.625 0.40625 -1.140625q0.15625 -0.53125 0.15625 -0.984375q0 -0.671875 -0.375 -1.015625q-0.359375 -0.34375 -1.265625 -0.546875l0 -0.765625l5.84375 0l0 0.765625q-0.609375 0.125 -0.9375 0.390625q-0.328125 0.25 -0.65625 0.8125q-0.328125 0.546875 -0.78125 1.546875l-5.65625 12.703125z" fill-rule="nonzero"/><path fill="#000000" fill-opacity="0.0" d="m197.33333 15.593176l41.95276 0l0 58.173225l-41.95276 0z" fill-rule="evenodd"/><path fill="#f3f3f3" d="m218.70033 46.29755l2.03125 -2.578125q0.328125 -0.421875 0.53125 -0.8125q0.203125 -0.40625 0.203125 -0.828125q0 -0.359375 -0.265625 -0.59375q-0.265625 -0.234375 -0.828125 -0.34375l0 -0.765625l5.109375 0l0 0.765625q-0.59375 0.171875 -1.21875 0.671875q-0.609375 0.5 -1.5 1.609375l-3.234375 3.96875l3.5625 4.796875q0.765625 1.03125 1.375 1.578125q0.609375 0.546875 1.21875 0.78125l0 0.765625l-6.28125 0l0 -0.765625q1.296875 -0.15625 1.296875 -0.96875q0 -0.328125 -0.109375 -0.625q-0.109375 -0.296875 -0.40625 -0.6875l-2.265625 -3.15625l-2.40625 3.125q-0.265625 0.34375 -0.421875 0.640625q-0.140625 0.28125 -0.140625 0.640625q0 0.421875 0.28125 0.703125q0.296875 0.265625 0.921875 0.328125l0 0.765625l-5.21875 0l0 -0.765625q0.515625 -0.1875 0.921875 -0.46875q0.421875 -0.28125 0.84375 -0.71875q0.4375 -0.453125 1.140625 -1.3125l3.25 -4.03125l-3.328125 -4.5625q-0.6875 -0.9375 -1.09375 -1.359375q-0.40625 -0.421875 -0.75 -0.640625q-0.34375 -0.21875 -0.6875 -0.3125l0 -0.765625l6.125 0l0 0.765625q-1.234375 0.1875 -1.234375 0.96875q0 0.359375 0.15625 0.71875q0.171875 0.359375 0.515625 0.796875l1.90625 2.671875z" fill-rule="nonzero"/><path fill="#000000" fill-opacity="0.0" d="m47.737534 302.83728l0 -296.1575" fill-rule="evenodd"/><path stroke="#999999" stroke-width="2.0" stroke-linejoin="round" stroke-linecap="butt" d="m47.737534 302.83728l0 -284.1575" fill-rule="evenodd"/><path fill="#999999" stroke="#999999" stroke-width="2.0" stroke-linecap="butt" d="m51.040997 18.67979l-3.303463 -9.076196l-3.3034668 9.076196z" fill-rule="evenodd"/><path fill="#000000" fill-opacity="0.0" d="m48.02887 67.35958l0 235.33856" fill-rule="evenodd"/><path stroke="#d9ead3" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="butt" d="m48.02887 67.35958l0 235.33856" fill-rule="evenodd"/><path fill="#000000" fill-opacity="0.0" d="m388.27823 68.10761l-339.937 0" fill-rule="evenodd"/><path stroke="#c9daf8" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="butt" d="m388.27823 68.10761l-339.937 0" fill-rule="evenodd"/><path fill="#000000" fill-opacity="0.0" d="m388.27823 67.50131l-340.25198 235.05511" fill-rule="evenodd"/><path stroke="#f3f3f3" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="butt" d="m388.27823 67.50131l-340.25198 235.05511" fill-rule="evenodd"/><path fill="#f4cccc" d="m383.41208 68.10761l0 0c0 -2.348297 1.903656 -4.2519684 4.251953 -4.2519684l0 0c1.1277161 0 2.209198 0.44797516 3.0065918 1.245369c0.7974243 0.7974014 1.2453918 1.8789062 1.2453918 3.0065994l0 0c0 2.348297 -1.9036865 4.2519684 -4.2519836 4.2519684l0 0c-2.348297 0 -4.251953 -1.9036713 -4.251953 -4.2519684z" fill-rule="evenodd"/></g></svg>
+
+<p> To solve for <span class=mathInline> \theta </span>, you must use the property: <span class=mathInline> \tan \theta = \frac{opposite}{adjacent} </span>, which creates this equation when plugging in the corresponding variables: </p>
+
+<pre class=math>
+\tan \theta = \frac{x}{y}
+</pre>
+
+<p> Solving for <span class=mathInline> \theta </span> results in: </p>
+
+<pre class=math>
+\theta = \tan^{-1} \frac{x}{y}
+</pre>
+
+<p> The domain of the <span class=mathInline> \tan^{-1} </span> function is <span class=mathInline> -90 \lt \tan^{-1} x \lt 90 </span>, so the formula wouldn't work for all values around the circle, but rather only values where <span class=mathInline> y \gt 0 </span>. Whenever <span class=mathInline> y \lt 0 </span>, the angle will be offset 180 degrees, so a correcting factor must be added: </p>
+
+<pre class=math>
+180 \times (y \lt 0)
+</pre>
+
+<pre class=math>
+(y \lt 0) = \begin{cases}
+  0 & y \ge 0 \\
+  1 & y \lt 0 \\
+\end{cases}
+</pre>
+
+<p> Putting the full equation together yields: </p>
+
+<pre class=math>
+\theta = \tan^{-1} \frac{x}{y} + 180(y \lt 0)
+</pre>
+
+<p> Converting to Scratch code: </p>
+
+<pre class=blocks>
+(([atan v] of ((x) / (y))) + ((180) * <(y) < (0)>))
+</pre>
+
+<p> Even when extending the function to support <span class=mathInline> y </span> values above and below 0, it doesn't address the case when it is <i>equal</i> to 0. In Scratch, <code class=b> ([atan v] of ((1) / (0))) </code> evaluates to 90, and <code class=b> ([atan v] of ((-1) / (0))) </code> evaluates to -90. This effectively completes the domain for all points.
