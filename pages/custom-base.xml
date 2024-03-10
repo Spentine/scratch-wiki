@@ -1,0 +1,52 @@
+<title>Custom Base</title>
+
+
+
+<h1> Custom Base </h1>
+
+<p> A custom base may use a different number of digits compared to base-10. </p>
+
+<hb> Script </hb>
+
+<p> The number must be a non-negative integer. </p>
+
+<pre class="blocks">
+define number (num) to base (b)
+set [i v] to (num)
+set [digits v] to ()
+repeat until <(i) = (0)>
+set [digits v] to (join (letter (((i) mod (b)) + (1)) of [0123456789abcdefghijklmnopqrstuvwxyz]) (digits))
+set [i v] to ([floor v] of ((i) / (b)))
+end
+</pre>
+
+<h3> Explanation </h3>
+
+<p> Integers of base <span class=mathInline> b </span> can be written out as: </p>
+
+<pre class=math>
+x = a_n b^n + a_{n-1} b^{n-1} + \cdots + a_1 b^1 + a_0 b^0 \\
+= \displaystyle\sum_{k=0}^n a_k b^k \\
+\tiny{(a_k \in \{0, 1\}; k \in \Z; 0 \le k)}
+</pre>
+
+<p> Note that <span class=mathInline> x \mod b </span> will always be equal to <span class=mathInline> a_0 </span>. </p>
+
+<pre class=math>
+x \mod b \\
+= a_n b^n + a_{n-1} b^{n-1} + \cdots + a_1 b^1 + a_0 b^0 \mod b \\
+= ((a_n b^n \mod b) + (a_{n-1} b^{n-1} \mod b) + \cdots + (a_1 b^1 \mod b) + (a_0 b^0 \mod b)) \mod b \\
+= \sout{(a_n b^n \mod b) + (a_{n-1} b^{n-1} \mod b) + \cdots + (a_1 b^1 \mod b)} + (a_0 b^0 \mod b) \mod b \\
+= a_0 b^0 \mod b \\
+= a_0 \mod b
+</pre>
+
+<p> Here is the same proof using k-summation notation: </p>
+
+<pre class=math>
+x \mod b \\
+= \displaystyle\sum_{k=0}^n a_k b^k \mod b \\
+= a_0 b^0 + \displaystyle\sum_{k=1}^n a_k b^k \mod b \\
+= a_0 + b\Big(\displaystyle\sum_{k=1}^n a_k b^{k-1}\Big) \mod b \\
+= a_0 \mod b \\
+</pre>
