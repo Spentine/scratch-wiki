@@ -314,11 +314,10 @@ set [output v] to (join (output) [,])
 define list to string
 set [output v] to ()
 for each [a v] in (length of [list v]) {
-set [b v] to ()
-repeat (length of (item (a) of [list v]))
-set [b v] to (join (b) (join [/] (letter (((length of (b)) / (2)) + (1)) of (item (a) of [list v]))))
-end
-set [output v] to (join (output) (join (b) [,]))
+for each [b v] in (length of (item (a) of [list v])) {
+set [output v] to (join (output) (join [/] (letter (b) of (item (a) of [list v]))))
+} :: control loop
+set [output v] to (join (output) [,])
 } :: control loop
 </pre>
 

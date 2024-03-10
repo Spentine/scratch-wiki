@@ -28,14 +28,42 @@ set [output v] to (join (letter (index) of (str)) (output))
 end
 </pre>
 
-<h2> Script 3 </h2>
+<h1> Hidden Palette </h1>
 
-<p> This script uses blocks from the hidden palette. </p>
+<p> These scripts uses blocks from the hidden palette. </p>
+
+<h2> Script 1h </h2>
 
 <pre class="blocks">
 define reverse text (str)
 set [output v] to []
 for [index v] in (length of (str)) {
 set [output v] to (join (letter (index) of (str)) (output))
+} :: control loop
+</pre>
+
+<h2> Script 2h </h2>
+
+<p> This script runs about 40% faster than Script 1h. It works by reducing the amount of <code class="b">set [var v] to ()</code> operations. </p>
+
+<pre class="blocks">
+define reverse text (str)
+set [output v] to ()
+for each [index v] in ([ceiling v] of ((length of (str)) / (2))) {
+set [output v] to (join (join (letter ((index) * (2)) of (str)) (letter (((index) * (2)) - (1)) of (str))) (output))
+} :: control loop
+</pre>
+
+<h2> Script 3h </h2>
+
+<p> Taking the principle from Script 2h to the extreme, This script can be created by processing 8 characters in one <code class="b">set [var v] to ()</code> operation: </p>
+
+<p> It runs about 140% faster than Script 1h. </p>
+
+<pre class="blocks">
+define reverse text (str)
+set [output v] to ()
+for each [index v] in ([ceiling v] of ((length of (str)) / (8))) {
+set [output v] to (join (letter ((index) * (8)) of (str)) (join (letter (((index) * (8)) - (1)) of (str)) (join (letter (((index) * (8)) - (2)) of (str)) (join (letter (((index) * (8)) - (3)) of (str)) (join (letter (((index) * (8)) - (4)) of (str)) (join (letter (((index) * (8)) - (5)) of (str)) (join (letter (((index) * (8)) - (6)) of (str)) (join (letter (((index) * (8)) - (7)) of (str)) (output)))))))))
 } :: control loop
 </pre>
